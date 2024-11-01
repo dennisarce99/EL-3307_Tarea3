@@ -4,6 +4,7 @@ module Numeros (
     input logic load_num;
     output logic [15:0] num_o; 
     //output logic signo;
+    //senal de LISTO
 );
 
     reg [1:0] state, next_state;
@@ -13,7 +14,7 @@ module Numeros (
     parameter enter = 4'b1011, delete - 4'b1100;
     
     always_ff @(clk) begin
-        if (rst or (count > 2'b11)) begin
+        if (rst) begin
             state <= s0;
         end
         else if (load_num) begin
