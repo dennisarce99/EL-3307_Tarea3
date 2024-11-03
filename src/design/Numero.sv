@@ -1,9 +1,11 @@
 module Numeros (
-    input logic clk, rst;
-    input logic [3:0] num;
-    input logic load_num;
-    output logic [15:0] num_o; 
-    //output logic signo;
+    input logic clk,
+    input logic rst,
+    input logic [3:0] num,
+    input logic load_num,
+    output logic [15:0] num_o,
+    output logic [15:0] num_mult 
+    output logic signal_num;
     //senal de LISTO
 );
 
@@ -27,6 +29,8 @@ module Numeros (
         case (state)
             s0: begin
                 num_parcial = 0;
+                num_mult = 0;
+                signal_num = 0;
                 if (load_num) begin
                    state = s1; 
                 end
@@ -50,6 +54,8 @@ module Numeros (
             s2: begin
                 if (num == enter) begin
                     num_o = num_parcial;
+                    num_mult = num_parcial;
+                    signal_num = 1'b1;
                     state = s0;
                 end
                 else (num == delete) begin
@@ -67,6 +73,8 @@ module Numeros (
             s3: begin
                 if (num == enter) begin
                     num_o = num_parcial;
+                    num_mult = num_parcial[7:4]*4'b1010 + num_parcial[3:0];
+                    signal_num = 1'b1;
                     state = s0;
                 end
                 else (num == delete) begin
