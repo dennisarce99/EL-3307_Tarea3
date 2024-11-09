@@ -112,8 +112,12 @@ module Teclado (
             state5:
                 begin
                     col = 4'b1111;
+                    load_num = 0;
                     if (sync_row==0) begin
                         next_state = state0;
+                    end
+                    else begin
+                        next_state = state1;
                     end
                 end
                 
