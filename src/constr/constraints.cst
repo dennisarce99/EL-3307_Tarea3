@@ -1,3 +1,6 @@
+IO_LOC  "anodos[4]" 37;
+IO_PORT "anodos[4]" IO_TYPE=LVCMOS33;
+
 IO_LOC  "anodos[3]" 38;
 IO_PORT "anodos[3]" IO_TYPE=LVCMOS33;
 
@@ -31,16 +34,16 @@ IO_PORT "segmentos[1]" IO_TYPE=LVCMOS33;
 IO_LOC  "segmentos[0]" 42;
 IO_PORT "segmentos[0]" IO_TYPE=LVCMOS33;
 
-IO_LOC  "col[3]" 30;
+IO_LOC  "col[3]" 29;
 IO_PORT "col[3]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 
-IO_LOC  "col[2]" 29;
+IO_LOC  "col[2]" 30;
 IO_PORT "col[2]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 
-IO_LOC  "col[1]" 20;
+IO_LOC  "col[1]" 33;
 IO_PORT "col[1]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 
-IO_LOC  "col[0]" 19;
+IO_LOC  "col[0]" 34;
 IO_PORT "col[0]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 
 IO_LOC  "row[3]" 25;

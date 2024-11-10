@@ -18,7 +18,7 @@ module MainModule(
 
     logic [15:0] num_Y;
     logic [15:0] bcd_Y;
-    logic Q_LSB;
+    logic [2] Q_LSB;
     mult_control_t mult_control;
 
     logic [15:0] num_display;
@@ -68,7 +68,7 @@ module MainModule(
 
     bin_decimal Bin_BCD(
         .binario(num_Y),
-        .bcd(bcd_Y),
+        .bcd(bcd_Y)
     );
 
     assign num_display = (signal_num == 0) ? num_o:bcd_Y;

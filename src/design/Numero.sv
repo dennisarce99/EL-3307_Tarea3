@@ -14,7 +14,7 @@ module Numeros (
 
     parameter s0 = 3'b000, s1 = 3'b001, s2 = 3'b010, s3 = 3'b011; 
     parameter s4 = 3'b100, s5 = 3'b101, s6 = 3'b110;
-    parameter enter = 4'b1011, delete - 4'b1100;
+    parameter enter = 4'b1011, delete = 4'b1100;
     
     always_ff @(posedge clk) begin
         if (rst) begin

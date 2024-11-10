@@ -6,11 +6,6 @@ module MainTB;
     logic [3:0] row, col;
     logic [3:0] anodos;
     logic [6:0] segmentos;
-    
-    logic clk_div;
-    logic [3:0] sync_row;
-    logic [3:0] num;
-    logic [1:0] load_num;
  
     MainModule MainTop(
         .clk(clk),
