@@ -3,40 +3,57 @@ module display (
     input logic clk_div,
     input logic [1:0] load_num,
     input logic [3:0] num,
-    output logic [3:0] anodos,
+    output logic [4:0] anodos,
     output logic [6:0] segmentos
 );
 
-    reg [1:0] select=0;
-    reg [3:0] digito=0;
+    reg [2:0] select, next_select;
+    reg [3:0] digito, next_digito;
+
+    parameter sel0 = 3'b000, sel1 = 3'b001, sel2 = 3'b010, sel3 = 3'b011, sel4 = 3'b100;
 
     always_ff @(posedge clk) begin
-        select <= select + 1'b1;
-    end
-
-    always_ff @(posedge clk_div) begin
-        if (load_num==1) begin
-            digito <= num;
-        end
+        select <= next_select;
+        digito <= next_digito;
     end
 
     //controla activar un display a la vez
     always_comb begin
         case (select) // traduce c/d numero BCD al 7seg correspondiente
-            2'b00: begin
-                anodos = 4'b0001; // Activar display 1
+            sel0: begin
+                anodos = 5'b00001; // Activar display 1
+                next_select = sel1;
+                next_digito = num[3:0];
             end
-            2'b01: begin
-                anodos = 4'b0010; // Activar display 2
+
+            sel1: begin
+                anodos = 5'b00010; // Activar display 2
+                next_select = sel2;
+                next_digito = num[7:4];
             end
-            2'b10: begin
-                anodos = 4'b0100; // Activar display 3
+
+            sel2: begin
+                anodos = 5'b00100; // Activar display 3
+                next_select = sel3;
+                next_digito = num[11:8];
             end
-            2'b11: begin 
-                anodos = 4'b1000; // Activar display 4
+
+            sel3: begin 
+                anodos = 5'b01000; // Activar display 4
+                next_select = sel4;
+                next_digito = num[15:12];
             end
+            
+            sel4: begin
+                anodos = 5'b10000;
+                next_select = sel0;
+                next_digito = num[19:16];
+            end
+
             default: begin
-                anodos = 4'b0001;
+                anodos = 5'b00000;
+                next_select = sel0;
+                next_digito = num[3:0];
             end
         endcase  
     end

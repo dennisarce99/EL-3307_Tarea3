@@ -3,7 +3,7 @@ module MainModule(
     input logic rst, 
     input logic [3:0] row, 
     output logic [3:0] col,
-    output logic [3:0] anodos,
+    output logic [4:0] anodos,
     output logic [6:0] segmentos
 );
 

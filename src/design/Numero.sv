@@ -9,7 +9,7 @@ module Numeros (
     output logic signal_num
 );
 
-    reg [1:0] state, next_state;
+    reg [2:0] state, next_state;
     reg [15:0] num_parcial;
 
     parameter s0 = 3'b000, s1 = 3'b001, s2 = 3'b010, s3 = 3'b011; 
