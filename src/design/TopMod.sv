@@ -18,7 +18,7 @@ module MainModule(
 
     logic [15:0] num_Y;
     logic [15:0] bcd_Y;
-    logic [2] q_LSB;
+    logic [1:0] q_LSB;
     /*mult_control_t mult_control;*/
     logic [15:0] num_display;
 

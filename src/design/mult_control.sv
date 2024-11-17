@@ -39,6 +39,14 @@ module control #(
     end
 
     always_comb begin
+        next_state = state;        
+        cont = 3'b111; 
+        load_A = 1'b0;
+        load_B = 1'b0;
+        load_add = 1'b0;
+        shift_HQ_LQ_Q_1 = 1'b0;
+        add_sub = 1'b0;
+        z = 1'b0;
         case (state)
             idle: begin
                 if (signal_num) begin
@@ -99,11 +107,11 @@ module control #(
 
             shift: begin
                 cont = cont - 1'b1;
-                if (cont == 0) begin
+                if (cont == 3'b000) begin
                     z = 1'b1;
                 end
                 else begin
-                    z = 0;
+                    z = 1'b0;
                 end
                 next_state = sel1;
             end
@@ -125,6 +133,7 @@ module control #(
                 /*mult_control.*/shift_HQ_LQ_Q_1 = 0;
                 /*mult_control.*/add_sub = 0;
                 next_state = idle;
+                z = 1'b0;
             end
         endcase
     end

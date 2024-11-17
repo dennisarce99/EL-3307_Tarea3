@@ -47,7 +47,7 @@ module display (
             sel4: begin
                 anodos = 5'b10000;
                 next_select = sel0;
-                next_digito = 0;
+                next_digito = 4'b0000;
             end
 
             default: begin

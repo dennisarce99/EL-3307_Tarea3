@@ -9,8 +9,8 @@ module Sincronizador (
 
     always_ff @(posedge clk_div) begin
         if (rst) begin
-            val <= 0;
-            sync_row <= 0;
+            val <= 4'b0000;
+            sync_row <= 4'b0000;
         end
         else begin
             val <= row;
