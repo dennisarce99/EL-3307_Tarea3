@@ -1497,10 +1497,10 @@ Optimizing module MainModule.
 
 10.7.8. Executing WREDUCE pass (reducing word size of cells).
 Removed top 28 address bits (of 32) from memory init port MainModule.$flatten\Segmentos7.$auto$mem.cc:319:emit$467 ($flatten\Segmentos7.$auto$proc_rom.cc:150:do_switch$465).
-Removed top 31 bits (of 32) from port B of cell MainModule.$flatten\Frec.$add$../design/DivisorClock.sv:9$128 ($add).
+Removed top 26 bits (of 27) from port B of cell MainModule.$flatten\Frec.$add$../design/DivisorClock.sv:9$128 ($add).
 Removed top 5 bits (of 32) from port Y of cell MainModule.$flatten\Frec.$add$../design/DivisorClock.sv:9$128 ($add).
 Removed top 18 bits (of 27) from port B of cell MainModule.$flatten\Frec.$eq$../design/DivisorClock.sv:12$130 ($eq).
-Removed top 23 bits (of 32) from port B of cell MainModule.$flatten\Frec.$ge$../design/DivisorClock.sv:9$127 ($ge).
+Removed top 18 bits (of 27) from port B of cell MainModule.$flatten\Frec.$ge$../design/DivisorClock.sv:9$127 ($ge).
 Removed top 3 bits (of 8) from port B of cell MainModule.$flatten\Keypad.$procmux$636_CMP0 ($eq).
 Removed top 3 bits (of 8) from port B of cell MainModule.$flatten\Keypad.$procmux$635_CMP0 ($eq).
 Removed top 3 bits (of 8) from port B of cell MainModule.$flatten\Keypad.$procmux$634_CMP0 ($eq).
@@ -3556,6 +3556,6 @@ Found and reported 0 problems.
 
 10.30. Executing JSON backend.
 
-End of script. Logfile hash: 56167e72f1
+End of script. Logfile hash: 66495cea5c
 Yosys 0.26+1 (git sha1 b1a011138, x86_64-w64-mingw32-g++ 9.2.1 -Os)
 Time spent: 1% 26x opt_expr (0 sec), 1% 24x opt_clean (0 sec), ...
