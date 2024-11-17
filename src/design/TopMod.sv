@@ -7,21 +7,26 @@ module MainModule(
     output logic [6:0] segmentos
 );
 
-    logic [1:0] cont;
     logic clk_div;
     logic [3:0] sync_row;
     logic [3:0] num;
-    logic [1:0] load_num;
-    logic [15:0] num_A;
-    logic [15:0] num_B;
+    logic load_num;
+    logic [7:0] num_A;
+    logic [7:0] num_B;
+    logic [7:0] num_o;
     logic signal_num;
 
     logic [15:0] num_Y;
     logic [15:0] bcd_Y;
-    logic [2] Q_LSB;
-    mult_control_t mult_control;
-
+    logic [2] q_LSB;
+    /*mult_control_t mult_control;*/
     logic [15:0] num_display;
+
+    logic load_A;
+    logic load_B;
+    logic load_add;
+    logic shift_HQ_LQ_Q_1;
+    logic add_sub;
 
     FrecDivider Frec(
         .clk(clk),
@@ -55,15 +60,30 @@ module MainModule(
         .signal_num(signal_num)
     );
  
-
-    mult_with_no_fsm Multiplicador #(.N(8)) (
+    control #(.n(8)) ctrl (
         .clk(clk),
         .rst(rst),
-        .A(num_A),
-        .B(num_B),
-        .mult_control(mult_control),
-        .Q_LSB(Q_LSB),
-        .Y(num_Y)
+        .signal_num(signal_num),
+        .q_LSB(q_LSB),
+        .load_A(load_A),
+        .load_B(load_B),
+        .load_add(load_add),
+        .shift_HQ_LQ_Q_1(shift_HQ_LQ_Q_1),
+        .add_sub(add_sub)
+    );
+
+    mult_with_no_fsm #( .n(8) ) Multiplicador (
+        .clk(clk),
+        .rst(rst),
+        .a(num_A),
+        .b(num_B),
+        .load_A(load_A),
+        .load_B(load_B),
+        .load_add(load_add),
+        .shift_HQ_LQ_Q_1(shift_HQ_LQ_Q_1),
+        .add_sub(add_sub),
+        .q_LSB(q_LSB),
+        .y(num_Y)
     );
 
     bin_decimal Bin_BCD(

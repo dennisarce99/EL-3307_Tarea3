@@ -4,7 +4,7 @@ module Teclado (
     input logic [3:0] sync_row,
     output logic [3:0] col,
     output logic [3:0] num,
-    output logic [1:0] load_num
+    output logic load_num
 );
 
     reg [5:0] state, next_state;
@@ -66,7 +66,7 @@ module Teclado (
                     col = 4'b0001;
                     if (sync_row) begin
                         next_state = state5;
-                        load_num = 1;
+                        load_num = 1'b1;
                     end
                     else begin
                         next_state = state2;
@@ -78,7 +78,7 @@ module Teclado (
                     col = 4'b0010;
                     if (sync_row) begin
                         next_state = state5;
-                        load_num = 1;
+                        load_num = 1'b1;
                     end
                     else begin
                         next_state = state3;
@@ -90,7 +90,7 @@ module Teclado (
                     col = 4'b0100;
                     if (sync_row) begin
                         next_state = state5;
-                        load_num = 1;
+                        load_num = 1'b1;
                     end
                     else begin
                         next_state = state4;
@@ -102,7 +102,7 @@ module Teclado (
                     col = 4'b1000;
                     if (sync_row) begin
                         next_state = state5;
-                        load_num = 1;
+                        load_num = 1'b1;
                     end
                     else begin
                         next_state = state0;

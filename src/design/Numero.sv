@@ -4,13 +4,14 @@ module Numeros (
     input logic [3:0] num,
     input logic load_num,
 
-    output logic [15:0] num_o,
-    output logic [15:0] num_A, num_B,
+    output logic [7:0] num_o,
+    output logic [7:0] num_A, 
+    output logic [7:0] num_B,
     output logic signal_num
 );
 
     reg [2:0] state, next_state;
-    reg [15:0] num_parcial;
+    logic [7:0] num_parcial;
 
     parameter s0 = 3'b000, s1 = 3'b001, s2 = 3'b010, s3 = 3'b011; 
     parameter s4 = 3'b100, s5 = 3'b101, s6 = 3'b110;
@@ -25,7 +26,7 @@ module Numeros (
         end
     end
 
-    always_comb begin
+    always @ (posedge clk) begin
         num_o = 0;
         num_parcial = 0;
         signal_num = 0;
@@ -67,7 +68,7 @@ module Numeros (
                         next_state = s0;
                     end
                     else begin
-                        num_o = {num_parcial[15:4], num};
+                        num_o = {num_parcial[7:4], num};
                         num_parcial = num_parcial*4'b1010 + num;
                         next_state = s2;
                     end
@@ -84,7 +85,7 @@ module Numeros (
                         next_state = s3;
                     end
                     else if (num == delete) begin
-                        num_o = {0, num_o};
+                        num_o = {4'b0000, num_o[7:4]};
                         num_parcial = num_o;
                         next_state = s1;
                     end
@@ -131,7 +132,7 @@ module Numeros (
                         next_state = s3;
                     end
                     else begin
-                        num_o = {num_parcial[15:4], num};
+                        num_o = {num_parcial[7:4], num};
                         num_parcial = num_parcial*4'b1010 + num;
                         next_state = s5;
                     end
@@ -149,7 +150,7 @@ module Numeros (
                         signal_num = 1;
                     end
                     else if (num == delete) begin
-                        num_o = {0, num_o};
+                        num_o = {4'b0000, num_o};
                         num_parcial = num_o;
                         next_state = s4;
                     end

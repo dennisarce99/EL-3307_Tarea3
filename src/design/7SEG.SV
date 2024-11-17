@@ -1,8 +1,8 @@
 module display (
     input logic clk,
     input logic clk_div,
-    input logic [1:0] load_num,
-    input logic [3:0] num,
+    input logic load_num,
+    input logic [15:0] num,
     output logic [4:0] anodos,
     output logic [6:0] segmentos
 );
@@ -18,7 +18,7 @@ module display (
     end
 
     //controla activar un display a la vez
-    always_comb begin
+    always @ (posedge clk) begin
         case (select) // traduce c/d numero BCD al 7seg correspondiente
             sel0: begin
                 anodos = 5'b00001; // Activar display 1
@@ -47,7 +47,7 @@ module display (
             sel4: begin
                 anodos = 5'b10000;
                 next_select = sel0;
-                next_digito = num[19:16];
+                next_digito = 0;
             end
 
             default: begin

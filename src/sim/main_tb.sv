@@ -4,7 +4,7 @@ module MainTB;
 
     logic clk, rst;
     logic [3:0] row, col;
-    logic [3:0] anodos;
+    logic [4:0] anodos;
     logic [6:0] segmentos;
  
     MainModule MainTop(
