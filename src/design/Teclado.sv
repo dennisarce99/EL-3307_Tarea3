@@ -46,7 +46,7 @@ module Teclado (
 
     always @ (state or sync_row) begin
         next_state = state;
-        col = 4'b0000;
+        col = 4'b1111;
         sum_row = sync_row[3] || sync_row[2] || sync_row[1] || sync_row[0];
         load_num = 1'b0;
         case (state)

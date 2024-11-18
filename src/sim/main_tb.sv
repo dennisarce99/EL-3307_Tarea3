@@ -20,10 +20,9 @@ module MainTB;
 
     initial begin
         clk = 0;
-
         row = 4'b0010;
         $display("Display=%b, Segmentos=%b, Col=%b, Row=%b", anodos, segmentos, col, row);
-        #30000
+        #300000
 
         $finish;
     end

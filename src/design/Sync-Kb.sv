@@ -1,4 +1,5 @@
 module Sincronizador (
+    input logic clk,
     input logic clk_div,
     input logic rst,
     input logic [3:0] row,
@@ -12,7 +13,7 @@ module Sincronizador (
             val <= 4'b0000;
             sync_row <= 4'b0000;
         end
-        else begin
+        else if (clk && clk_div) begin
             val <= row;
             sync_row <= val;
         end

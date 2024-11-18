@@ -34,6 +34,7 @@ module MainModule(
     );
 
     Sincronizador Sync(
+        .clk(clk),
         .clk_div(clk_div),
         .rst(rst),
         .row(row),
@@ -50,7 +51,7 @@ module MainModule(
     );
 
     Numeros Multiplicandos (
-        .clk(clk),
+        .clk(clk_div),
         .rst(rst),
         .num(num),
         .load_num(load_num),
@@ -61,7 +62,7 @@ module MainModule(
     );
  
     control #(.n(8)) ctrl (
-        .clk(clk),
+        .clk(clk_div),
         .rst(rst),
         .signal_num(signal_num),
         .q_LSB(q_LSB),
@@ -72,18 +73,18 @@ module MainModule(
         .add_sub(add_sub)
     );
 
-    mult_with_no_fsm #( .n(8) ) Multiplicador (
-        .clk(clk),
+    mult_with_no_fsm #( .N(8) ) Multiplicador (
+        .clk(clk_div),
         .rst(rst),
-        .a(num_A),
-        .b(num_B),
+        .A(num_A),
+        .B(num_B),
         .load_A(load_A),
         .load_B(load_B),
         .load_add(load_add),
         .shift_HQ_LQ_Q_1(shift_HQ_LQ_Q_1),
         .add_sub(add_sub),
-        .q_LSB(q_LSB),
-        .y(num_Y)
+        .Q_LSB(q_LSB),
+        .Y(num_Y)
     );
 
     bin_decimal Bin_BCD(
@@ -91,11 +92,12 @@ module MainModule(
         .bcd(bcd_Y)
     );
 
-    assign num_display = (signal_num == 0) ? num_o:bcd_Y;
-
+    always_comb begin
+        num_display = (signal_num == 0) ? num_o:bcd_Y;
+    end
+    
     display Segmentos7(
         .clk(clk),
-        .clk_div(clk_div),
         .load_num(load_num),
         .num(num_display),
         .anodos(anodos),

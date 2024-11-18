@@ -1,6 +1,5 @@
 module display (
     input logic clk,
-    input logic clk_div,
     input logic load_num,
     input logic [15:0] num,
     output logic [4:0] anodos,
