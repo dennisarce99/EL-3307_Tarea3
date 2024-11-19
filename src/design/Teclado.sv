@@ -8,12 +8,13 @@ module Teclado (
 );
 
     reg [5:0] state, next_state;
-    reg sum_row;
+    logic sum_row;
 
     parameter state0 = 6'b000001, state1 = 6'b000010, state2 = 6'b000100;
     parameter state3 = 6'b001000, state4 = 6'b010000, state5 = 6'b100000;
 
-    always @(sync_row or col) begin
+    always_comb begin
+        num = 4'b0000;
         case ({sync_row, col})
             {4'b0001, 4'b0001}: num = 4'b0000; //0
             {4'b0001, 4'b0010}: num = 4'b0001; //1
@@ -44,7 +45,7 @@ module Teclado (
         end
     end
 
-    always @ (state or sync_row) begin
+    always_comb begin
         next_state = state;
         col = 4'b1111;
         sum_row = sync_row[3] || sync_row[2] || sync_row[1] || sync_row[0];
@@ -65,9 +66,9 @@ module Teclado (
             state1:
                 begin
                     col = 4'b0001;
-                    if (sync_row) begin
-                        next_state = state5;
+                    if (sync_row != 4'b0000) begin
                         load_num = 1'b1;
+                        next_state = state5;
                     end
                     else begin
                         next_state = state2;
@@ -77,9 +78,9 @@ module Teclado (
             state2:
                 begin
                     col = 4'b0010;
-                    if (sync_row) begin
-                        next_state = state5;
+                    if (sync_row != 4'b0000) begin
                         load_num = 1'b1;
+                        next_state = state5;
                     end
                     else begin
                         next_state = state3;
@@ -89,9 +90,9 @@ module Teclado (
             state3:
                 begin
                     col = 4'b0100;
-                    if (sync_row) begin
-                        next_state = state5;
+                    if (sync_row != 4'b0000) begin
                         load_num = 1'b1;
+                        next_state = state5;
                     end
                     else begin
                         next_state = state4;
@@ -101,9 +102,9 @@ module Teclado (
             state4:
                 begin
                     col = 4'b1000;
-                    if (sync_row) begin
-                        next_state = state5;
+                    if (sync_row != 4'b0000) begin
                         load_num = 1'b1;
+                        next_state = state5;
                     end
                     else begin
                         next_state = state0;
@@ -113,8 +114,7 @@ module Teclado (
             state5:
                 begin
                     col = 4'b1111;
-                    load_num = 1'b0;
-                    if (sync_row==0) begin
+                    if (sync_row==4'b0000) begin
                         next_state = state0;
                     end
                     else begin

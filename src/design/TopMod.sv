@@ -34,7 +34,6 @@ module MainModule(
     );
 
     Sincronizador Sync(
-        .clk(clk),
         .clk_div(clk_div),
         .rst(rst),
         .row(row),
@@ -51,7 +50,7 @@ module MainModule(
     );
 
     Numeros Multiplicandos (
-        .clk(clk_div),
+        .clk(clk),
         .rst(rst),
         .num(num),
         .load_num(load_num),
@@ -95,7 +94,7 @@ module MainModule(
     always_comb begin
         num_display = (signal_num == 0) ? num_o:bcd_Y;
     end
-    
+
     display Segmentos7(
         .clk(clk),
         .load_num(load_num),

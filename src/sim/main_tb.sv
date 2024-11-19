@@ -20,10 +20,34 @@ module MainTB;
 
     initial begin
         clk = 0;
+        row = 4'b0000;
+        #20
         row = 4'b0010;
-        $display("Display=%b, Segmentos=%b, Col=%b, Row=%b", anodos, segmentos, col, row);
-        #300000
-
+        #20
+        row = 4'b0000;
+        #20
+        row = 4'b0100;
+        #20
+        row = 4'b0000;
+        #20
+        row = 4'b0100;
+        #20
+        row = 4'b0000;
+        
+        #20
+        row = 4'b0100;
+        #20
+        row = 4'b0000;
+        #20
+        row = 4'b1000;
+        #20
+        row = 4'b0000;
+        #20
+        row = 4'b0001;
+        #20
+        row = 4'b0000;
+        
+        #100
         $finish;
     end
 
