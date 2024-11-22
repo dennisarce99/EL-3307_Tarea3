@@ -42,8 +42,8 @@ module MainModule(
 
     Teclado Keypad(
         .rst(rst),
-        .clk_div(clk_div),
-        .sync_row(sync_row),
+        .clk_div(clk),
+        .sync_row(row),
         .col(col),
         .num(num),
         .load_num(load_num)

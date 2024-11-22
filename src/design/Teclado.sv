@@ -13,8 +13,7 @@ module Teclado (
     parameter state0 = 6'b000001, state1 = 6'b000010, state2 = 6'b000100;
     parameter state3 = 6'b001000, state4 = 6'b010000, state5 = 6'b100000;
 
-    always_comb begin
-        num = 4'b0000;
+    always @ (sync_row or col) begin
         case ({sync_row, col})
             {4'b0001, 4'b0001}: num = 4'b0000; //0
             {4'b0001, 4'b0010}: num = 4'b0001; //1
@@ -45,10 +44,10 @@ module Teclado (
         end
     end
 
-    always_comb begin
-        next_state = state;
+    always @ (clk_div) begin
+        next_state = state0;
         col = 4'b1111;
-        sum_row = sync_row[3] || sync_row[2] || sync_row[1] || sync_row[0];
+        sum_row = |sync_row;
         load_num = 1'b0;
         case (state)
             state0:

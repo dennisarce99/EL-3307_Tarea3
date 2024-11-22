@@ -1,11 +1,3 @@
-/*typedef struct {
-    logic load_A ;
-    logic load_B ;
-    logic load_add ;
-    logic shift_HQ_LQ_Q_1 ;
-    logic add_sub ;
-} mult_control_t ;*/
-
 module control #(
     parameter n = 8
     ) (
@@ -13,7 +5,6 @@ module control #(
     input logic rst,
     input logic signal_num,
     input logic [1:0] q_LSB,
-    //output mult_control_t mult_control
     output logic load_A,
     output logic load_B,
     output logic load_add,
@@ -59,21 +50,21 @@ module control #(
 
             init: begin
                 cont = 3'b111;
-                /*mult_control.*/load_A = 1'b1;
-                /*mult_control.*/load_B = 1'b1;
-                /*mult_control.*/load_add = 0;
-                /*mult_control.*/shift_HQ_LQ_Q_1 = 0;
-                /*mult_control.*/add_sub = 0;
+                load_A = 1'b1;
+                load_B = 1'b1;
+                load_add = 1'b0;
+                shift_HQ_LQ_Q_1 = 1'b0;
+                add_sub = 1'b0;
                 next_state = sel0;
             end
 
             sel0: begin
                 cont = 3'b111;
-                /*mult_control.*/load_A = 0;
-                /*mult_control.*/load_B = 0;
-                /*mult_control.*/load_add = 0;
-                /*mult_control.*/shift_HQ_LQ_Q_1 = 1'b1;
-                /*mult_control.*/add_sub = 0;
+                load_A = 1'b0;
+                load_B = 1'b0;
+                load_add = 1'b0;
+                shift_HQ_LQ_Q_1 = 1'b1;
+                add_sub = 1'b0;
                 if (q_LSB[0] == q_LSB[1]) begin
                     next_state = shift;
                 end
@@ -87,21 +78,21 @@ module control #(
 
             sum: begin
                 cont = 3'b111;
-                /*mult_control.*/load_A = 0;
-                /*mult_control.*/load_B = 0;
-                /*mult_control.*/load_add = 1'b1;
-                /*mult_control.*/shift_HQ_LQ_Q_1 = 0;
-                /*mult_control.*/add_sub = 1'b1;
+                load_A = 1'b0;
+                load_B = 1'b0;
+                load_add = 1'b1;
+                shift_HQ_LQ_Q_1 = 1'b0;
+                add_sub = 1'b1;
                 next_state = shift;
             end
 
             res: begin
                 cont = 3'b111;
-                /*mult_control.*/load_A = 0;
-                /*mult_control.*/load_B = 0;
-                /*mult_control.*/load_add = 1'b1;
-                /*mult_control.*/shift_HQ_LQ_Q_1 = 0;
-                /*mult_control.*/add_sub = 0;
+                load_A = 1'b0;
+                load_B = 1'b0;
+                load_add = 1'b1;
+                shift_HQ_LQ_Q_1 = 1'b0;
+                add_sub = 1'b0;
                 next_state = shift;
             end
 
@@ -127,11 +118,11 @@ module control #(
 
             default: begin
                 cont = 3'b111;
-                /*mult_control.*/load_A = 0;
-                /*mult_control.*/load_B = 0;
-                /*mult_control.*/load_add = 0;
-                /*mult_control.*/shift_HQ_LQ_Q_1 = 0;
-                /*mult_control.*/add_sub = 0;
+                load_A = 1'b0;
+                load_B = 1'b0;
+                load_add = 1'b0;
+                shift_HQ_LQ_Q_1 = 1'b0;
+                add_sub = 1'b0;
                 next_state = idle;
                 z = 1'b0;
             end

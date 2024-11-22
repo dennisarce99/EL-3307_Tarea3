@@ -16,38 +16,38 @@ module MainTB;
         .segmentos(segmentos)
         );
 
-    always #10 clk = ~clk;
+    always #1 clk = ~clk;
 
     initial begin
         clk = 0;
         row = 4'b0000;
-        #20
+        #100
         row = 4'b0010;
-        #20
+        #270
         row = 4'b0000;
-        #20
+        #100
         row = 4'b0100;
-        #20
+        #270
         row = 4'b0000;
-        #20
+        #100
         row = 4'b0100;
-        #20
-        row = 4'b0000;
-        
-        #20
-        row = 4'b0100;
-        #20
-        row = 4'b0000;
-        #20
-        row = 4'b1000;
-        #20
-        row = 4'b0000;
-        #20
-        row = 4'b0001;
-        #20
+        #270
         row = 4'b0000;
         
         #100
+        row = 4'b0100;
+        #270
+        row = 4'b0000;
+        #100
+        row = 4'b1000;
+        #270
+        row = 4'b0000;
+        #100
+        row = 4'b0001;
+        #270
+        row = 4'b0000;
+        
+        #300
         $finish;
     end
 

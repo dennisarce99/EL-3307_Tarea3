@@ -17,7 +17,7 @@ module display (
     end
 
     //controla activar un display a la vez
-    always @ (posedge clk) begin
+    always_comb begin
         case (select) // traduce c/d numero BCD al 7seg correspondiente
             sel0: begin
                 anodos = 5'b00001; // Activar display 1

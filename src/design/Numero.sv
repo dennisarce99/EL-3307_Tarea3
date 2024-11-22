@@ -3,7 +3,6 @@ module Numeros (
     input logic rst,
     input logic [3:0] num,
     input logic load_num,
-
     output logic [7:0] num_o,
     output logic [7:0] num_A, 
     output logic [7:0] num_B,
@@ -26,13 +25,13 @@ module Numeros (
         end
     end
 
-    always_comb begin
+    always @ (state) begin
         num_o = 8'b0;
         signal_num = 1'b0;
         num_parcial = 8'b0;
         num_A = 8'b0;
         num_B = 8'b0;
-        next_state = state;
+        next_state = s0;
         case (state)
             s0: begin
                 num_parcial = 8'b0;
