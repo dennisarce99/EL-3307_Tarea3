@@ -369,7 +369,12 @@ Diagrama de Bloques del Algoritmo de Booth. [1]
 
 ### Apendice 3:
 Diagrama de Estados del Algoritmo de Booth.
-![Estados Booth](doc/img/flow2.jpg)
+![Estados Booth](doc/img/flow2.png)
 
-### Apendice 1:
-texto, imágen, etc
+### Apendice 4:
+Simulación señales del circuito.
+![Simulacion 1](doc/img/wv1.png)
+![Simulacion 2](doc/img/wv2.png)
+![Simulacion 3](doc/img/wv3.png)
+![Simulacion 4](doc/img/wv4.png)
+![Simulacion 1](doc/img/wv5.png)
